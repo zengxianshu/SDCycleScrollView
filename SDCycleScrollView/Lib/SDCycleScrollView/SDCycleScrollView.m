@@ -643,6 +643,24 @@ NSString * const ID = @"SDCycleScrollViewCell";
         UIPageControl *pageControl = (UIPageControl *)_pageControl;
         pageControl.currentPage = indexOnPageControl;
     }
+    
+    if (self.itemScrollViewDidScrollBlock) {
+        
+        int scrollIndex = 0;
+        if (_flowLayout.scrollDirection == UICollectionViewScrollDirectionHorizontal) {
+            scrollIndex = (_mainView.contentOffset.x) / _flowLayout.itemSize.width;
+        } else {
+            scrollIndex = (_mainView.contentOffset.y) / _flowLayout.itemSize.height;
+        }
+        
+        CGFloat progress = 0.0;
+        if (_flowLayout.scrollDirection == UICollectionViewScrollDirectionHorizontal) {
+             progress = (_mainView.contentOffset.x - (_flowLayout.itemSize.width * scrollIndex)) / _flowLayout.itemSize.width;
+        } else {
+            progress = (_mainView.contentOffset.y - (_flowLayout.itemSize.height * scrollIndex)) / _flowLayout.itemSize.height;
+        }
+        self.itemScrollViewDidScrollBlock([self pageControlIndexWithCurrentCellIndex:scrollIndex],progress);
+    }
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView

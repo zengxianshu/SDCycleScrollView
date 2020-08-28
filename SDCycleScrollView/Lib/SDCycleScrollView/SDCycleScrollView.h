@@ -131,6 +131,9 @@ typedef enum {
 /** block方式监听滚动 */
 @property (nonatomic, copy) void (^itemDidScrollOperationBlock)(NSInteger currentIndex);
 
+/** block方式监听滚动， 索引，偏移进度*/
+@property (nonatomic, copy) void (^itemScrollViewDidScrollBlock)(NSInteger leftIndex,CGFloat progress);
+
 /** 可以调用此方法手动控制滚动到哪一个index */
 - (void)makeScrollViewScrollToIndex:(NSInteger)index;
 
