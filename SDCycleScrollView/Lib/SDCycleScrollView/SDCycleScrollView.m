@@ -563,7 +563,7 @@ NSString * const ID = @"SDCycleScrollViewCell";
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    self.backgroundImageView.isHidden = _totalItemsCount > 0;
+    self.backgroundImageView.hidden = _totalItemsCount > 0;
     return _totalItemsCount;
 }
 
